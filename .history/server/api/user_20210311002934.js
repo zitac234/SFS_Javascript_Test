@@ -1,10 +1,9 @@
 const router = require('express').Router()
-const axios = require('axios')
+const fetch = require('node-fetch')
 // protect api
 router.get('/', async(req, res, next) => {
       try {
-            let {data} = await axios.get('https://raw.githubusercontent.com/StrategicFS/Recruitment/master/data.json')
-            res.send(data)
+            let data = 
       } catch (error) {
             next(error)
       }

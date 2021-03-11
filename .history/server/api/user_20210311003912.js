@@ -4,7 +4,7 @@ const axios = require('axios')
 router.get('/', async(req, res, next) => {
       try {
             let {data} = await axios.get('https://raw.githubusercontent.com/StrategicFS/Recruitment/master/data.json')
-            res.send(data)
+            res.
       } catch (error) {
             next(error)
       }
