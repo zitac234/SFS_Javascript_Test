@@ -16,7 +16,7 @@
     "seed": "node script/seed.js",
     "start": "node server",
     "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
-    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client"
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client",
   },
   "repository": {
     "type": "git",
@@ -38,10 +38,7 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.13.10",
     "@babel/core": "^7.13.10",
-    "@babel/plugin-proposal-decorators": "^7.13.5",
-    "@babel/plugin-syntax-import-meta": "^7.10.4",
     "@babel/preset-env": "^7.13.10",
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
