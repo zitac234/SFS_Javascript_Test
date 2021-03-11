@@ -1,0 +1,20 @@
+{
+  "name": "sfs_javascript_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zitac234/SFS_Javascript_Test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zitac234/SFS_Javascript_Test/issues"
+  },
+  "homepage": "https://github.com/zitac234/SFS_Javascript_Test#readme"
+}
