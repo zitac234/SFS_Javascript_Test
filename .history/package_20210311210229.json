@@ -1,0 +1,54 @@
+{
+  "name": "sfs_javascript_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-client": "webpack",
+    "build-client-watch": "webpack -w",
+    "deploy": "script/deploy",
+    "heroku-token": "script/encrypt-heroku-auth-token.js",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint-fix": "npm run lint -- --fix",
+    "prepare": "if [ -d .git ]; then npm-merge-driver install; fi",
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\"",
+    "postinstall": "touch secrets.js",
+    "seed": "node script/seed.js",
+    "start": "node server",
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & NODE_ENV='development' npm run start-server",
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zitac234/SFS_Javascript_Test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zitac234/SFS_Javascript_Test/issues"
+  },
+  "homepage": "https://github.com/zitac234/SFS_Javascript_Test#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
+    "react-table": "^7.6.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/plugin-proposal-decorators": "^7.13.5",
+    "@babel/plugin-syntax-import-meta": "^7.10.4",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.24.4",
+    "webpack-cli": "^4.5.0"
+  }
+}
