@@ -2238,10 +2238,15 @@ var Table = /*#__PURE__*/function (_React$Component) {
           id: "lodaing"
         }, " Loading . . .");
       } else {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, "Total  ", this.addBalance()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("button", {
-          tyoe: "button",
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", {
+          id: "total"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("p", null, "Total ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("span", null, this.addBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("button", {
+          type: "button",
           id: "buttonAdd"
-        }, "Add"));
+        }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("button", {
+          type: "button",
+          id: "buttonRemove"
+        }, "REMOVE"));
       }
     }
   }]);

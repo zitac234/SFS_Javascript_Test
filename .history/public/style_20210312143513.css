@@ -1,6 +1,6 @@
 #buttonAdd, #total{
       margin-left: 30%;
-      margin-top: 1%;
+      margin-top: 2%;
 }
 #total{
       background-color: lightblue;
@@ -12,7 +12,7 @@
       padding-left: 30px;
       font-size: larger;
 }
-span{
+span, {
       margin-left: 80%;
 }
 table{
@@ -31,8 +31,6 @@ td, th{
 #buttonAdd , #buttonRemove{
       width: 75px;
       height: 75px;
-      border-radius: 25%;
-}
-#buttonRemove{
-      margin-left: 450px;
+      background-color: blueviolet;
+      margin: 2px;
 }

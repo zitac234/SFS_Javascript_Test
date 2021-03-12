@@ -63,7 +63,7 @@ export default class Table extends React.Component{
                               </table>
                               <div id= 'total'><p>Total <span>{this.addBalance()}</span></p></div>
                               <button type='button' id='buttonAdd'>ADD</button>
-                              <button type='button' id='buttonRemove'>REMOVE</button>
+                              <button type='button' id='buttonRemove'>Remove</button>
                         </div>
                   )
             }

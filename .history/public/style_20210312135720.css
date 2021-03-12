@@ -1,0 +1,17 @@
+#buttonAdd, {
+      margin-left: 30%;
+      margin-top: 2%;
+}
+table{
+      margin-top: 5%;
+      margin-left: 30%;
+}
+thead {color:green;}
+tbody {color:blue;}
+table, th, td {
+ border: 1px solid black;
+}
+td, th{
+      text-align: center;
+      padding: 10px;
+}

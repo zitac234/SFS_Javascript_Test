@@ -1,11 +1,11 @@
 #buttonAdd, #total{
       margin-left: 30%;
-      margin-top: 1%;
+      margin-top: 2%;
 }
 #total{
       background-color: lightblue;
       width: 612px;
-      height: 60px;
+      height: 50px;
 }
 #total p{
       padding-top: 20px;
@@ -27,12 +27,4 @@ table, th, td {
 td, th{
       text-align: center;
       padding: 10px;
-}
-#buttonAdd , #buttonRemove{
-      width: 75px;
-      height: 75px;
-      border-radius: 25%;
-}
-#buttonRemove{
-      margin-left: 450px;
 }

@@ -53,17 +53,17 @@ export default class Table extends React.Component{
             }else{
                   return(  
                         <div>
-                              <table>
-                                    <thead>
-                                          <tr >{this.getHeader()}</tr>
-                                    </thead>
-                                    <tbody>
-                                          {this.getRow()}
-                                    </tbody>
-                              </table>
-                              <div id= 'total'><p>Total <span>{this.addBalance()}</span></p></div>
-                              <button type='button' id='buttonAdd'>ADD</button>
-                              <button type='button' id='buttonRemove'>REMOVE</button>
+                        <table>
+                              <thead>
+                                    <tr >{this.getHeader()}</tr>
+                              </thead>
+                              <tbody>
+                                    {this.getRow()}
+                              </tbody>
+                        </table>
+                        <div id= 'total'>Total <span>{this.addBalance()}</span></div>
+                        <button tyoe='button' id='buttonAdd'>Add</button>
+                        <button tyoe='button' id='button'>Add</button>
                         </div>
                   )
             }
