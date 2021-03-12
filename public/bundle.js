@@ -2126,6 +2126,17 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+ // friday
+// make css better
+// add checker box
+// add functionality check top check all
+// add button 
+//  remove button
+// --------saturday morning or over weekend-------
+// css style
+// ----- monday and tuesday ----------
+// css style again and host on heroku 
+// make video
 
 var Table = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__.default)(Table, _React$Component);
@@ -2144,6 +2155,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     };
     _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__.default)(_this));
     _this.getRow = _this.getRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__.default)(_this));
+    _this.addBalance = _this.addBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__.default)(_this));
     return _this;
   }
 
@@ -2184,12 +2196,21 @@ var Table = /*#__PURE__*/function (_React$Component) {
       return componentDidMount;
     }()
   }, {
+    key: "addBalance",
+    value: function addBalance() {
+      return this.state.data.reduce(function (sum, _ref) {
+        var balance = _ref.balance;
+        return sum + balance;
+      }, 0);
+    }
+  }, {
     key: "getHeader",
     value: function getHeader() {
-      var header = Object.keys(this.state.data[0]).slice(1);
-      return header.map(function (info, index) {
+      var headers = ['Creditor', 'Frist Name', 'Last Name', 'Min Pay%', 'Balance'];
+      return headers.map(function (info, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("th", {
-          key: index
+          key: index,
+          className: "header"
         }, info.toUpperCase());
       });
     }
@@ -2213,15 +2234,14 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var data = this.state.data;
 
       if (!this.state.isLoading) {
-        {
-          console.log('this is data from if', data);
-        }
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, " Loading . . .");
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", {
+          id: "lodaing"
+        }, " Loading . . .");
       } else {
-        {
-          console.log('this is data from else', data);
-        }
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tbody", null, this.getRow())));
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("div", null, "Total  ", this.addBalance()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_8__.createElement("button", {
+          tyoe: "button",
+          id: "buttonAdd"
+        }, "Add"));
       }
     }
   }]);
