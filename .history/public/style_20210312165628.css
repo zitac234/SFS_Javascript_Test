@@ -1,0 +1,46 @@
+#buttonAdd, #total{
+      margin-left: 30%;
+      margin-top: 1%;
+}
+#total{
+      background-color: lightblue;
+      width: 612px;
+      height: 60px;
+}
+#total p{
+      padding-top: 20px;
+      padding-left: 30px;
+      font-size: larger;
+}
+span{
+      margin-left: 80%;
+}
+table{
+      margin-top: 5%;
+      margin-left: 30%;
+}
+thead {color:green;}
+tbody, input {color:blue;}
+table, th, td {
+ border: 1px solid black;
+}
+ td, th{
+      text-align: center;
+      height:50px;
+}
+
+#buttonAdd , #buttonRemove{
+      width: 75px;
+      height: 75px;
+      outline: none;
+      border-radius: 25%;
+}
+#buttonRemove{
+      margin-left: 450px;
+}
+input[type="text"] {
+      width: 100%; 
+      box-sizing: border-box;
+      -webkit-box-sizing:border-box;
+      -moz-box-sizing: border-box;
+ }
