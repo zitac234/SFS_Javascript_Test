@@ -53,7 +53,7 @@ export default class Table extends React.Component{
       deleteRow(){
             const table = document.getElementById('table')
             let index = [...table.rows].length-1
-            table.deleteRow(index)
+            table.deleteRow(inde)
       }
       getHeader(){
             const headers = ['Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
@@ -84,7 +84,7 @@ export default class Table extends React.Component{
                               </table>
                               <div id= 'total'><p>Total <span>${this.addBalance()}</span></p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
-                              <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>
+                              <button type='button' id='buttonRemove'>REMOVE</button>
                         </div>
                   )
             }

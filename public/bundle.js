@@ -2284,6 +2284,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.getRow = _this.getRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.addBalance = _this.addBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.addRow = _this.addRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
   }
 
@@ -2335,14 +2336,14 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "addRow",
     value: function addRow() {
       var table = document.getElementById('table');
-      var index = this.state.data.length;
+      var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var row = table.insertRow(index + 1);
 
       for (var i = 0; i < 5; i++) {
         var cell = row.insertCell(i);
         var txtInput = document.createElement("input");
         txtInput.type = 'text';
-        txtInput.style = "text-transform:uppercase";
+        if (i === 0) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
 
@@ -2351,6 +2352,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
       inputArray.forEach(function (input) {
         return console.log(input.value.toUpperCase());
       });
+    }
+  }, {
+    key: "deleteRow",
+    value: function deleteRow() {
+      var table = document.getElementById('table');
+      var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
+      table.deleteRow(index);
     }
   }, {
     key: "getHeader",
@@ -2401,7 +2409,10 @@ var Table = /*#__PURE__*/function (_React$Component) {
           }
         }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
-          id: "buttonRemove"
+          id: "buttonRemove",
+          onClick: function onClick() {
+            return _this2.deleteRow();
+          }
         }, "REMOVE"));
       }
     }

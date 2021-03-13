@@ -50,11 +50,7 @@ export default class Table extends React.Component{
             const inputArray = [...document.getElementsByTagName('input')]
             inputArray.forEach(input => console.log(input.value.toUpperCase()))
       }
-      deleteRow(){
-            const table = document.getElementById('table')
-            let index = [...table.rows].length-1
-            table.deleteRow(index)
-      }
+      
       getHeader(){
             const headers = ['Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
             return headers.map((info, index) => <th key={index} className='header'>{info.toUpperCase()}</th>)
@@ -84,7 +80,7 @@ export default class Table extends React.Component{
                               </table>
                               <div id= 'total'><p>Total <span>${this.addBalance()}</span></p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
-                              <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>
+                              <button type='button' id='buttonRemove'>REMOVE</button>
                         </div>
                   )
             }

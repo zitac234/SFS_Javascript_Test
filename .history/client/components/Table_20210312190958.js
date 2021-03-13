@@ -23,7 +23,6 @@ export default class Table extends React.Component{
             this.getRow = this.getRow.bind(this)
             this.addBalance = this.addBalance.bind(this)
             this.addRow = this.addRow.bind(this)
-            this.deleteRow = this.deleteRow.bind(this)
       }
       async componentDidMount(){ 
             const url = 'https://raw.githubusercontent.com/StrategicFS/Recruitment/master/data.json'
@@ -38,22 +37,18 @@ export default class Table extends React.Component{
       }
       addRow(){
             const table = document.getElementById('table')
-            let index = [...table.rows].length-1
+            let index = this.state.data.length
             const row = table.insertRow(index+1)
             for(let i = 0; i < 5; i++){
                   let cell=  row.insertCell(i)
                   const txtInput  = document.createElement("input")
                   txtInput.type = 'text'
-                  if (i === 0)txtInput.style="text-transform:uppercase" 
+                  txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
             }
             const inputArray = [...document.getElementsByTagName('input')]
             inputArray.forEach(input => console.log(input.value.toUpperCase()))
-      }
-      deleteRow(){
-            const table = document.getElementById('table')
-            let index = [...table.rows].length-1
-            table.deleteRow(index)
+            console.log('this  is ')
       }
       getHeader(){
             const headers = ['Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
@@ -84,7 +79,7 @@ export default class Table extends React.Component{
                               </table>
                               <div id= 'total'><p>Total <span>${this.addBalance()}</span></p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
-                              <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>
+                              <button type='button' id='buttonRemove'>REMOVE</button>
                         </div>
                   )
             }
