@@ -2252,7 +2252,6 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 
-
  // friday
 // make css better
 // add checker box
@@ -2278,13 +2277,16 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this = _super.call(this, props);
     _this.state = {
       data: [],
+      databalance: [],
+      addedBalance: [],
       isLoading: false
     };
-    _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getRow = _this.getRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
-    _this.addBalance = _this.addBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.addRow = _this.addRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.totalBalance = _this.totalBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.getDataBalance = _this.getDataBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
   }
 
@@ -2292,7 +2294,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee() {
-        var url, _yield$axios$get, data;
+        var url, _yield$axios$get, data, databalance, addedBalance, table;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
           while (1) {
@@ -2309,8 +2311,20 @@ var Table = /*#__PURE__*/function (_React$Component) {
                   data: data,
                   isLoading: true
                 });
+                databalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('databalance')).map(function (data) {
+                  return data.innerHTML;
+                });
+                this.setState({
+                  databalance: databalance
+                });
+                console.log(this.state.databalance);
+                addedBalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedBalance'));
+                table = document.getElementById('table');
+                if ((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).slice(11)) this.setState({
+                  addedBalance: addedBalance
+                });
 
-              case 6:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -2325,16 +2339,17 @@ var Table = /*#__PURE__*/function (_React$Component) {
       return componentDidMount;
     }()
   }, {
-    key: "addBalance",
-    value: function addBalance() {
-      return this.state.data.reduce(function (sum, _ref) {
-        var balance = _ref.balance;
-        return sum + balance;
-      }, 0);
+    key: "totalBalance",
+    value: function totalBalance(newBalanace) {
+      this.setState({
+        addedBalance: [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(this.state.addedBalance), [newBalanace])
+      });
     }
   }, {
     key: "addRow",
     value: function addRow() {
+      var _this2 = this;
+
       var table = document.getElementById('table');
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var row = table.insertRow(index + 1);
@@ -2343,15 +2358,18 @@ var Table = /*#__PURE__*/function (_React$Component) {
         var cell = row.insertCell(i);
         var txtInput = document.createElement("input");
         txtInput.type = 'text';
+        if (i === 4) txtInput.className += 'addedBalance';
         if (i === 0) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
 
-      var inputArray = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByTagName('input'));
+      var cellBalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedBalance'));
 
-      inputArray.forEach(function (input) {
-        return console.log(input.value.toUpperCase());
-      });
+      for (var _i = 0; _i < cellBalance.length; _i++) {
+        cellBalance[_i].addEventListener('change', function (event) {
+          _this2.totalBalance(event.target.value);
+        });
+      }
     }
   }, {
     key: "deleteRow",
@@ -2359,6 +2377,16 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var table = document.getElementById('table');
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       table.deleteRow(index);
+      var addedBalance = this.state.addedBalance.slice(0, -1);
+      this.setState({
+        addedBalance: addedBalance
+      });
+
+      if (this.state.addedBalance.length === 0) {
+        this.setState({
+          databalance: (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(this.state.databalance).slice(0, -1)
+        });
+      }
     }
   }, {
     key: "getHeader",
@@ -2379,16 +2407,39 @@ var Table = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", {
           key: index
         }, keys.map(function (key, num) {
-          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+          return num === 4 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+            key: num,
+            className: "databalance"
+          }, user[key]) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
             key: num
           }, user[key]);
         }));
       });
     }
   }, {
+    key: "getDataBalance",
+    value: function getDataBalance() {
+      var totalBalance = 0;
+      var dataBalance = this.state.databalance.map(function (data) {
+        return Number(data);
+      }).reduce(function (sum, balance) {
+        return sum + balance;
+      }, 0);
+
+      if (this.state.addedBalance) {
+        totalBalance = this.state.addedBalance.map(function (num) {
+          return Number(num);
+        }).reduce(function (sum, num) {
+          return sum + num;
+        }, 0);
+      }
+
+      return totalBalance + dataBalance;
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var data = this.state.data;
 
@@ -2401,17 +2452,17 @@ var Table = /*#__PURE__*/function (_React$Component) {
           id: "table"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
           id: "total"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("span", null, "$", this.addBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("span", null, "$", this.getDataBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonAdd",
           onClick: function onClick() {
-            return _this2.addRow();
+            return _this3.addRow();
           }
         }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonRemove",
           onClick: function onClick() {
-            return _this2.deleteRow();
+            return _this3.deleteRow();
           }
         }, "REMOVE"));
       }
