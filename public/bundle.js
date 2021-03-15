@@ -2354,12 +2354,12 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var row = table.insertRow(index + 1);
 
-      for (var i = 0; i < 5; i++) {
+      for (var i = 0; i < 6; i++) {
         var cell = row.insertCell(i);
         var txtInput = document.createElement("input");
-        txtInput.type = 'text';
+        txtInput.type = i === 0 ? 'checkbox' : 'text';
         if (i === 4) txtInput.className += 'addedBalance';
-        if (i === 0) txtInput.style = "text-transform:uppercase";
+        if (i === 1) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
 
@@ -2391,28 +2391,49 @@ var Table = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "getHeader",
     value: function getHeader() {
-      var headers = ['Creditor', 'Frist Name', 'Last Name', 'Min Pay%', 'Balance'];
+      var headers = ['Checkbox', 'Creditor', 'Frist Name', 'Last Name', 'Min Pay%', 'Balance'];
+      var checkboxHeader = document.createElement("input");
+      checkboxHeader.setAttribute("type", "checkbox");
       return headers.map(function (info, index) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("th", {
-          key: index,
-          className: "header"
-        }, info.toUpperCase());
+        if (index === 0) {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("th", {
+            key: index,
+            className: "header"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("input", {
+            type: "checkbox",
+            id: "allCheckbox"
+          }));
+        } else {
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("th", {
+            key: index,
+            className: "header"
+          }, info.toUpperCase());
+        }
       });
     }
   }, {
     key: "getRow",
     value: function getRow() {
-      var keys = Object.keys(this.state.data[0]).slice(1);
+      var keys = Object.keys(this.state.data[0]);
       return this.state.data.map(function (user, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", {
           key: index
         }, keys.map(function (key, num) {
-          return num === 4 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
-            key: num,
-            className: "databalance"
-          }, user[key]) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
-            key: num
-          }, user[key]);
+          if (num === 0) {
+            return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+              key: num
+            }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("input", {
+              type: "checkbox",
+              className: "checkbox"
+            }));
+          } else {
+            return num === 5 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+              key: num,
+              className: "databalance"
+            }, user[key]) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+              key: num
+            }, user[key]);
+          }
         }));
       });
     }

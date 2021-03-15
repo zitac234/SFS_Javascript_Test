@@ -56,12 +56,12 @@ export default class Table extends React.Component{
             let table = document.getElementById('table')
             let index = [...table.rows].length-1
             const row = table.insertRow(index+1)
-            for(let i = 0; i < 6; i++){
+            for(let i = 0; i < 5; i++){
                   let cell=  row.insertCell(i)
                   const txtInput  = document.createElement("input")
-                  txtInput.type  = (i === 0)? 'checkbox' :  'text'
+                  txtInput.type = 'text'
                   if(i === 4) txtInput.className += 'addedBalance'
-                  if (i === 1)txtInput.style="text-transform:uppercase" 
+                  if (i === 0)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
@@ -91,7 +91,7 @@ export default class Table extends React.Component{
             checkboxHeader.setAttribute("type", "checkbox");
             return  headers.map((info, index) => {
                  if (index === 0 ){
-                 return <th key={index} className='header'><input type="checkbox" id="allCheckbox" ></input></th> 
+                 return <th key={index} className='header'><input type="checkbox" id="allcheckBox" ></input></th> 
             }else{
                   return <th key={index} className='header'>{info.toUpperCase() }</th>
             }
@@ -101,11 +101,8 @@ export default class Table extends React.Component{
            const keys = Object.keys(this.state.data[0])
             return (this.state.data.map((user, index) =>{
                  return  <tr key={index}>{keys.map((key, num)=>{
-                       if(num === 0){
-                        return <td key={num} ><input type="checkbox" className="checkbox" ></input></td> 
-                       }else{
-                        return  (num === 5)?<td key={num} className='databalance'>{user[key]}</td> :<td key={num}>{user[key]}</td>
-                       }
+                       if()
+                     return  (num === 5)?<td key={num} className='databalance'>{user[key]}</td> :<td key={num}>{user[key]}</td>
                  })}</tr>
             }))
       }

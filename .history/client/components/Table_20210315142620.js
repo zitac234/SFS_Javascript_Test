@@ -56,12 +56,12 @@ export default class Table extends React.Component{
             let table = document.getElementById('table')
             let index = [...table.rows].length-1
             const row = table.insertRow(index+1)
-            for(let i = 0; i < 6; i++){
+            for(let i = 0; i < 5; i++){
                   let cell=  row.insertCell(i)
                   const txtInput  = document.createElement("input")
-                  txtInput.type  = (i === 0)? 'checkbox' :  'text'
+                  txtInput.type = 'text'
                   if(i === 4) txtInput.className += 'addedBalance'
-                  if (i === 1)txtInput.style="text-transform:uppercase" 
+                  if (i === 0)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
@@ -102,10 +102,9 @@ export default class Table extends React.Component{
             return (this.state.data.map((user, index) =>{
                  return  <tr key={index}>{keys.map((key, num)=>{
                        if(num === 0){
-                        return <td key={num} ><input type="checkbox" className="checkbox" ></input></td> 
-                       }else{
-                        return  (num === 5)?<td key={num} className='databalance'>{user[key]}</td> :<td key={num}>{user[key]}</td>
+                        return <td key={num} ><input type="checkbox" id="checkBox" ></input></td> 
                        }
+                     return  (num === 5)?<td key={num} className='databalance'>{user[key]}</td> :<td key={num}>{user[key]}</td>
                  })}</tr>
             }))
       }

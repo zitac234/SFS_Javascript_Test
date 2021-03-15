@@ -60,6 +60,7 @@ export default class Table extends React.Component{
                   let cell=  row.insertCell(i)
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
+                  // txtInput.type = 'text'
                   if(i === 4) txtInput.className += 'addedBalance'
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
