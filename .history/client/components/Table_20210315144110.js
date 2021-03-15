@@ -1,15 +1,14 @@
 import React from 'react'
 import axios from 'axios'
-// make checkbox functional  before 4
-// render how many rows checked b4 4:30
-// render how many rows be4 4:30
-// refactor refactor refactor be4 7pm
+// make checkbox functional
+// render how many rows checked
+// render how many rows
+
 
 export default class Table extends React.Component{
       constructor(props){
             super(props)
             this.state={
-                  headerCheckbox:false,
                   data:[],
                   databalance:[],
                   addedBalance: [],
@@ -19,7 +18,6 @@ export default class Table extends React.Component{
             this.addRow = this.addRow.bind(this)
             this.deleteRow = this.deleteRow.bind(this)
             this.getHeader = this.getHeader.bind(this)
-            this.checkAllBoxes = this.checkAllBoxes.bind(this)
             this.totalBalance = this.totalBalance.bind(this)
             this.getDataBalance = this.getDataBalance.bind(this)
       }
@@ -34,25 +32,12 @@ export default class Table extends React.Component{
             this.setState({
                   databalance 
             })
+            console.log(this.state.databalance)
             const  addedBalance = [...document.getElementsByClassName('addedBalance')]
             let table = document.getElementById('table')
             if([...table.rows].slice(11))
             this.setState({
                   addedBalance
-            })
-            this.checkAllBoxes()
-      }
-      checkAllBoxes(){
-            const allCheckbox = document.getElementById('allCheckbox')
-            const checkboxes = [...document.getElementsByClassName('checkbox')]
-            console.log(checkboxes)
-            allCheckbox.addEventListener('click', (event)=>{
-                  const headerCheckbox = !this.state.headerCheckbox
-                  this.setState({
-                        headerCheckbox
-                  })
-                  checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
-                  console.log('this is headerchecker', this.state.headerCheckbox)
             })
       }
       totalBalance(newBalanace){
@@ -69,7 +54,6 @@ export default class Table extends React.Component{
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
                   if(i === 4) txtInput.className += 'addedBalance'
-                  if(i === 0) txtInput.className += 'checkbox'
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
             }

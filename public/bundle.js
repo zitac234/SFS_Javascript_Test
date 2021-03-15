@@ -2252,17 +2252,10 @@ function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflec
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 
- // friday
-// make css better
-// add checker box
-// add functionality check top check all
-// add button 
-//  remove button
-// --------saturday morning or over weekend-------
-// css style
-// ----- monday and tuesday ----------
-// css style again and host on heroku 
-// make video
+ // make checkbox functional  before 4
+// render how many rows checked b4 4:30
+// render how many rows be4 4:30
+// refactor refactor refactor be4 7pm
 
 var Table = /*#__PURE__*/function (_React$Component) {
   (0,_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_5__.default)(Table, _React$Component);
@@ -2276,6 +2269,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
+      headerCheckbox: false,
       data: [],
       databalance: [],
       addedBalance: [],
@@ -2285,6 +2279,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.addRow = _this.addRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.checkAllBoxes = _this.checkAllBoxes.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.totalBalance = _this.totalBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getDataBalance = _this.getDataBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
@@ -2317,12 +2312,12 @@ var Table = /*#__PURE__*/function (_React$Component) {
                 this.setState({
                   databalance: databalance
                 });
-                console.log(this.state.databalance);
                 addedBalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedBalance'));
                 table = document.getElementById('table');
                 if ((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).slice(11)) this.setState({
                   addedBalance: addedBalance
                 });
+                this.checkAllBoxes();
 
               case 12:
               case "end":
@@ -2339,6 +2334,29 @@ var Table = /*#__PURE__*/function (_React$Component) {
       return componentDidMount;
     }()
   }, {
+    key: "checkAllBoxes",
+    value: function checkAllBoxes() {
+      var _this2 = this;
+
+      var allCheckbox = document.getElementById('allCheckbox');
+
+      var checkboxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
+
+      console.log(checkboxes);
+      allCheckbox.addEventListener('click', function (event) {
+        var headerCheckbox = !_this2.state.headerCheckbox;
+
+        _this2.setState({
+          headerCheckbox: headerCheckbox
+        });
+
+        checkboxes.forEach(function (box) {
+          return box.checked = _this2.state.headerCheckbox;
+        });
+        console.log('this is headerchecker', _this2.state.headerCheckbox);
+      });
+    }
+  }, {
     key: "totalBalance",
     value: function totalBalance(newBalanace) {
       this.setState({
@@ -2348,7 +2366,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "addRow",
     value: function addRow() {
-      var _this2 = this;
+      var _this3 = this;
 
       var table = document.getElementById('table');
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
@@ -2359,6 +2377,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         var txtInput = document.createElement("input");
         txtInput.type = i === 0 ? 'checkbox' : 'text';
         if (i === 4) txtInput.className += 'addedBalance';
+        if (i === 0) txtInput.className += 'checkbox';
         if (i === 1) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
@@ -2367,7 +2386,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
       for (var _i = 0; _i < cellBalance.length; _i++) {
         cellBalance[_i].addEventListener('change', function (event) {
-          _this2.totalBalance(event.target.value);
+          _this3.totalBalance(event.target.value);
         });
       }
     }
@@ -2460,7 +2479,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var data = this.state.data;
 
@@ -2477,13 +2496,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
           type: "button",
           id: "buttonAdd",
           onClick: function onClick() {
-            return _this3.addRow();
+            return _this4.addRow();
           }
         }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonRemove",
           onClick: function onClick() {
-            return _this3.deleteRow();
+            return _this4.deleteRow();
           }
         }, "REMOVE"));
       }

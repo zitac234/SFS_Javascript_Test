@@ -19,7 +19,6 @@ export default class Table extends React.Component{
             this.addRow = this.addRow.bind(this)
             this.deleteRow = this.deleteRow.bind(this)
             this.getHeader = this.getHeader.bind(this)
-            this.checkAllBoxes = this.checkAllBoxes.bind(this)
             this.totalBalance = this.totalBalance.bind(this)
             this.getDataBalance = this.getDataBalance.bind(this)
       }
@@ -40,20 +39,11 @@ export default class Table extends React.Component{
             this.setState({
                   addedBalance
             })
-            this.checkAllBoxes()
+          
+            
       }
       checkAllBoxes(){
             const allCheckbox = document.getElementById('allCheckbox')
-            const checkboxes = [...document.getElementsByClassName('checkbox')]
-            console.log(checkboxes)
-            allCheckbox.addEventListener('click', (event)=>{
-                  const headerCheckbox = !this.state.headerCheckbox
-                  this.setState({
-                        headerCheckbox
-                  })
-                  checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
-                  console.log('this is headerchecker', this.state.headerCheckbox)
-            })
       }
       totalBalance(newBalanace){
            this.setState({

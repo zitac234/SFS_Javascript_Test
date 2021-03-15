@@ -9,7 +9,7 @@ export default class Table extends React.Component{
       constructor(props){
             super(props)
             this.state={
-                  headerCheckbox:false,
+                  headerCheckbox = false,
                   data:[],
                   databalance:[],
                   addedBalance: [],
@@ -19,7 +19,6 @@ export default class Table extends React.Component{
             this.addRow = this.addRow.bind(this)
             this.deleteRow = this.deleteRow.bind(this)
             this.getHeader = this.getHeader.bind(this)
-            this.checkAllBoxes = this.checkAllBoxes.bind(this)
             this.totalBalance = this.totalBalance.bind(this)
             this.getDataBalance = this.getDataBalance.bind(this)
       }
@@ -40,20 +39,7 @@ export default class Table extends React.Component{
             this.setState({
                   addedBalance
             })
-            this.checkAllBoxes()
-      }
-      checkAllBoxes(){
-            const allCheckbox = document.getElementById('allCheckbox')
-            const checkboxes = [...document.getElementsByClassName('checkbox')]
-            console.log(checkboxes)
-            allCheckbox.addEventListener('click', (event)=>{
-                  const headerCheckbox = !this.state.headerCheckbox
-                  this.setState({
-                        headerCheckbox
-                  })
-                  checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
-                  console.log('this is headerchecker', this.state.headerCheckbox)
-            })
+            const allcheckbox = document.getElementById()
       }
       totalBalance(newBalanace){
            this.setState({
@@ -69,7 +55,7 @@ export default class Table extends React.Component{
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
                   if(i === 4) txtInput.className += 'addedBalance'
-                  if(i === 0) txtInput.className += 'checkbox'
+                  if()
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)     
             }

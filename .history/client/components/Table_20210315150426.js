@@ -51,8 +51,6 @@ export default class Table extends React.Component{
                   this.setState({
                         headerCheckbox
                   })
-                  checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
-                  console.log('this is headerchecker', this.state.headerCheckbox)
             })
       }
       totalBalance(newBalanace){

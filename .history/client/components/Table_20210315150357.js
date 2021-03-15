@@ -48,11 +48,10 @@ export default class Table extends React.Component{
             console.log(checkboxes)
             allCheckbox.addEventListener('click', (event)=>{
                   const headerCheckbox = !this.state.headerCheckbox
+
                   this.setState({
                         headerCheckbox
                   })
-                  checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
-                  console.log('this is headerchecker', this.state.headerCheckbox)
             })
       }
       totalBalance(newBalanace){
