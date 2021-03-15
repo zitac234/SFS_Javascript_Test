@@ -2273,8 +2273,10 @@ var Table = /*#__PURE__*/function (_React$Component) {
       data: [],
       databalance: [],
       addedBalance: [],
+      checkedBalance: [],
       isLoading: false
     };
+    _this.checkSingleBox = _this.checkSingleBox.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getRow = _this.getRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.addRow = _this.addRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
@@ -2342,7 +2344,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
       var checkboxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
 
-      console.log(checkboxes);
+      console.log('this is checkedboxes', document.querySelectorAll("checkbox, add"));
       allCheckbox.addEventListener('click', function (event) {
         var headerCheckbox = !_this2.state.headerCheckbox;
 
@@ -2353,7 +2355,8 @@ var Table = /*#__PURE__*/function (_React$Component) {
         checkboxes.forEach(function (box) {
           return box.checked = _this2.state.headerCheckbox;
         });
-        console.log('this is headerchecker', _this2.state.headerCheckbox);
+
+        _this2.checkSingleBox();
       });
     }
   }, {
@@ -2368,27 +2371,42 @@ var Table = /*#__PURE__*/function (_React$Component) {
     value: function addRow() {
       var _this3 = this;
 
+      var classNamesToAdd = ['checkbox', 'addedcheckbox'];
       var table = document.getElementById('table');
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var row = table.insertRow(index + 1);
 
       for (var i = 0; i < 6; i++) {
+        var _txtInput$classList;
+
         var cell = row.insertCell(i);
         var txtInput = document.createElement("input");
         txtInput.type = i === 0 ? 'checkbox' : 'text';
-        if (i === 4) txtInput.className += 'addedBalance';
-        if (i === 0) txtInput.className += 'checkbox';
+        if (i === 5) txtInput.className += 'addedBalance';
+        if (i === 0) (_txtInput$classList = txtInput.classList).add.apply(_txtInput$classList, classNamesToAdd);
         if (i === 1) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
 
       var cellBalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedBalance'));
 
-      for (var _i = 0; _i < cellBalance.length; _i++) {
+      var addedRowCheckbox = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedcheckbox'));
+
+      var _loop = function _loop(_i) {
         cellBalance[_i].addEventListener('change', function (event) {
+          addedRowCheckbox[_i].setAttribute('name', "rows".concat(index + 1));
+
+          addedRowCheckbox[_i].setAttribute('value', event.target.value);
+
           _this3.totalBalance(event.target.value);
         });
+      };
+
+      for (var _i = 0; _i < cellBalance.length; _i++) {
+        _loop(_i);
       }
+
+      this.checkAllBoxes();
     }
   }, {
     key: "deleteRow",
@@ -2431,19 +2449,44 @@ var Table = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
+    key: "checkSingleBox",
+    value: function checkSingleBox() {
+      var boxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
+
+      var checkedBalance = boxes.filter(function (box) {
+        return box.checked;
+      }).map(function (box) {
+        return box.value;
+      });
+      this.setState({
+        checkedBalance: checkedBalance
+      });
+      console.log('this is boxes', checkedBalance);
+    }
+  }, {
     key: "getRow",
     value: function getRow() {
+      var _this4 = this;
+
       var keys = Object.keys(this.state.data[0]);
       return this.state.data.map(function (user, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", {
           key: index
         }, keys.map(function (key, num) {
+          var rowBalance = user[keys[5]];
+
           if (num === 0) {
+            var Inputname = "row".concat(index);
             return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
               key: num
             }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("input", {
               type: "checkbox",
-              className: "checkbox"
+              className: "checkbox",
+              name: Inputname,
+              value: rowBalance,
+              onClick: function onClick() {
+                return _this4.checkSingleBox();
+              }
             }));
           } else {
             return num === 5 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
@@ -2460,26 +2503,21 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "getDataBalance",
     value: function getDataBalance() {
       var totalBalance = 0;
-      var dataBalance = this.state.databalance.map(function (data) {
-        return Number(data);
-      }).reduce(function (sum, balance) {
-        return sum + balance;
-      }, 0);
 
-      if (this.state.addedBalance) {
-        totalBalance = this.state.addedBalance.map(function (num) {
+      if (this.state.checkedBalance.length) {
+        totalBalance = this.state.checkedBalance.map(function (num) {
           return Number(num);
         }).reduce(function (sum, num) {
           return sum + num;
         }, 0);
       }
 
-      return totalBalance + dataBalance;
+      return totalBalance;
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this5 = this;
 
       var data = this.state.data;
 
@@ -2496,13 +2534,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
           type: "button",
           id: "buttonAdd",
           onClick: function onClick() {
-            return _this4.addRow();
+            return _this5.addRow();
           }
         }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonRemove",
           onClick: function onClick() {
-            return _this4.deleteRow();
+            return _this5.deleteRow();
           }
         }, "REMOVE"));
       }
