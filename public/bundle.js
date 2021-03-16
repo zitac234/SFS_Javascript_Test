@@ -2271,9 +2271,8 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       headerCheckbox: false,
       data: [],
-      databalance: [],
-      addedBalance: [],
       checkedBalance: [],
+      checkboxes: [],
       isLoading: false
     };
     _this.checkSingleBox = _this.checkSingleBox.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
@@ -2282,7 +2281,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.checkAllBoxes = _this.checkAllBoxes.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
-    _this.totalBalance = _this.totalBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getDataBalance = _this.getDataBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
   }
@@ -2291,7 +2289,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = (0,_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__.default)( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().mark(function _callee() {
-        var url, _yield$axios$get, data, databalance, addedBalance, table;
+        var url, _yield$axios$get, data, checkboxes;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_8___default().wrap(function _callee$(_context) {
           while (1) {
@@ -2308,20 +2306,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
                   data: data,
                   isLoading: true
                 });
-                databalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('databalance')).map(function (data) {
-                  return data.innerHTML;
-                });
+                checkboxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
                 this.setState({
-                  databalance: databalance
-                });
-                addedBalance = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('addedBalance'));
-                table = document.getElementById('table');
-                if ((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).slice(11)) this.setState({
-                  addedBalance: addedBalance
+                  checkboxes: checkboxes
                 });
                 this.checkAllBoxes();
 
-              case 12:
+              case 9:
               case "end":
                 return _context.stop();
             }
@@ -2341,10 +2332,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var _this2 = this;
 
       var allCheckbox = document.getElementById('allCheckbox');
-
-      var checkboxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
-
-      console.log('this is checkedboxes', document.querySelectorAll("checkbox, add"));
       allCheckbox.addEventListener('click', function (event) {
         var headerCheckbox = !_this2.state.headerCheckbox;
 
@@ -2352,7 +2339,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
           headerCheckbox: headerCheckbox
         });
 
-        checkboxes.forEach(function (box) {
+        _this2.state.checkboxes.forEach(function (box) {
           return box.checked = _this2.state.headerCheckbox;
         });
 
@@ -2360,30 +2347,27 @@ var Table = /*#__PURE__*/function (_React$Component) {
       });
     }
   }, {
-    key: "totalBalance",
-    value: function totalBalance(newBalanace) {
-      this.setState({
-        addedBalance: [].concat((0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(this.state.addedBalance), [newBalanace])
-      });
-    }
-  }, {
     key: "addRow",
     value: function addRow() {
-      var _this3 = this;
-
       var classNamesToAdd = ['checkbox', 'addedcheckbox'];
       var table = document.getElementById('table');
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var row = table.insertRow(index + 1);
 
       for (var i = 0; i < 6; i++) {
-        var _txtInput$classList;
-
         var cell = row.insertCell(i);
         var txtInput = document.createElement("input");
         txtInput.type = i === 0 ? 'checkbox' : 'text';
         if (i === 5) txtInput.className += 'addedBalance';
-        if (i === 0) (_txtInput$classList = txtInput.classList).add.apply(_txtInput$classList, classNamesToAdd);
+
+        if (i === 0) {
+          var _txtInput$classList;
+
+          (_txtInput$classList = txtInput.classList).add.apply(_txtInput$classList, classNamesToAdd);
+
+          txtInput.addEventListener('click', this.checkSingleBox);
+        }
+
         if (i === 1) txtInput.style = "text-transform:uppercase";
         cell.appendChild(txtInput);
       }
@@ -2397,8 +2381,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
           addedRowCheckbox[_i].setAttribute('name', "rows".concat(index + 1));
 
           addedRowCheckbox[_i].setAttribute('value', event.target.value);
-
-          _this3.totalBalance(event.target.value);
         });
       };
 
@@ -2406,7 +2388,11 @@ var Table = /*#__PURE__*/function (_React$Component) {
         _loop(_i);
       }
 
-      this.checkAllBoxes();
+      var checkboxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.querySelectorAll(".checkbox, .addedcheckbox"));
+
+      this.setState({
+        checkboxes: checkboxes
+      });
     }
   }, {
     key: "deleteRow",
@@ -2418,12 +2404,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
       this.setState({
         addedBalance: addedBalance
       });
-
-      if (this.state.addedBalance.length === 0) {
-        this.setState({
-          databalance: (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(this.state.databalance).slice(0, -1)
-        });
-      }
     }
   }, {
     key: "getHeader",
@@ -2451,9 +2431,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "checkSingleBox",
     value: function checkSingleBox() {
-      var boxes = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(document.getElementsByClassName('checkbox'));
-
-      var checkedBalance = boxes.filter(function (box) {
+      var checkedBalance = this.state.checkboxes.filter(function (box) {
         return box.checked;
       }).map(function (box) {
         return box.value;
@@ -2461,12 +2439,12 @@ var Table = /*#__PURE__*/function (_React$Component) {
       this.setState({
         checkedBalance: checkedBalance
       });
-      console.log('this is boxes', checkedBalance);
+      console.log('this is state checkbox', this.state.checkboxes);
     }
   }, {
     key: "getRow",
     value: function getRow() {
-      var _this4 = this;
+      var _this3 = this;
 
       var keys = Object.keys(this.state.data[0]);
       return this.state.data.map(function (user, index) {
@@ -2485,7 +2463,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
               name: Inputname,
               value: rowBalance,
               onClick: function onClick() {
-                return _this4.checkSingleBox();
+                return _this3.checkSingleBox();
               }
             }));
           } else {
@@ -2506,7 +2484,8 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.checkedBalance.length) {
         totalBalance = this.state.checkedBalance.map(function (num) {
-          return Number(num);
+          var element = Number(num);
+          return isNaN(element) ? 0 : element;
         }).reduce(function (sum, num) {
           return sum + num;
         }, 0);
@@ -2517,7 +2496,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
+      var _this4 = this;
 
       var data = this.state.data;
 
@@ -2534,13 +2513,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
           type: "button",
           id: "buttonAdd",
           onClick: function onClick() {
-            return _this5.addRow();
+            return _this4.addRow();
           }
         }, "ADD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonRemove",
           onClick: function onClick() {
-            return _this5.deleteRow();
+            return _this4.deleteRow();
           }
         }, "REMOVE"));
       }

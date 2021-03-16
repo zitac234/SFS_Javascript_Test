@@ -57,12 +57,10 @@ export default class Table extends React.Component{
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
                   if(i === 5) txtInput.className += 'addedBalance'
-                  if(i === 0){ 
-                        txtInput.classList.add(...classNamesToAdd)
-                        txtInput.addEventListener('click', this.checkSingleBox)
-                  }
+                  if(i === 0) txtInput.classList.add(...classNamesToAdd)
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)  
+                  if(i === 0 )  cell.onClick =  
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
             const addedRowCheckbox = [...document.getElementsByClassName('addedcheckbox')]

@@ -11,6 +11,7 @@ export default class Table extends React.Component{
             this.state={
                   headerCheckbox:false,
                   data:[],
+                  addedBalance: [],
                   checkedBalance:[],
                   checkboxes:[],
                   isLoading: false
@@ -30,6 +31,12 @@ export default class Table extends React.Component{
                   data,
                   isLoading: true
             })
+            const  addedBalance = [...document.getElementsByClassName('addedBalance')]
+            let table = document.getElementById('table')
+            if([...table.rows].slice(11))
+            this.setState({
+                  addedBalance
+            })
             const checkboxes = [...document.getElementsByClassName('checkbox')]
             this.setState({
                   checkboxes
@@ -46,6 +53,7 @@ export default class Table extends React.Component{
                   this.state.checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
                   this.checkSingleBox()
             })
+            console.log('this is state checkbox', this.state.checkboxes)
       }
       addRow(){
             let classNamesToAdd = ['checkbox', 'addedcheckbox']
@@ -57,12 +65,9 @@ export default class Table extends React.Component{
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
                   if(i === 5) txtInput.className += 'addedBalance'
-                  if(i === 0){ 
-                        txtInput.classList.add(...classNamesToAdd)
-                        txtInput.addEventListener('click', this.checkSingleBox)
-                  }
+                  if(i === 0) txtInput.classList.add(...classNamesToAdd)
                   if (i === 1)txtInput.style="text-transform:uppercase" 
-                  cell.appendChild(txtInput)  
+                  cell.appendChild(txtInput)     
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
             const addedRowCheckbox = [...document.getElementsByClassName('addedcheckbox')]
@@ -76,7 +81,7 @@ export default class Table extends React.Component{
             this.setState({
                   checkboxes 
             })
-
+            console.log('this is state checkbox', this.state.checkboxes)
       }
       deleteRow(){
             const table = document.getElementById('table')
@@ -125,7 +130,12 @@ export default class Table extends React.Component{
           if(this.state.checkedBalance.length ){
             totalBalance = this.state.checkedBalance.map(num => {
                   let element = Number(num)
-                  return (isNaN(element))? 0 : element
+                  return (isNa)
+                  if(isNaN(element)){
+                        return 0
+                  }else{
+                        return element
+                  }
             }).reduce( ( sum, num) => sum + num , 0) 
           }
           return totalBalance

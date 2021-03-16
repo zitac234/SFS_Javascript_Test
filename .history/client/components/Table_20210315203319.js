@@ -59,7 +59,8 @@ export default class Table extends React.Component{
                   if(i === 5) txtInput.className += 'addedBalance'
                   if(i === 0){ 
                         txtInput.classList.add(...classNamesToAdd)
-                        txtInput.addEventListener('click', this.checkSingleBox)
+                        txtInput.addEventListener
+                        
                   }
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)  

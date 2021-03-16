@@ -11,6 +11,7 @@ export default class Table extends React.Component{
             this.state={
                   headerCheckbox:false,
                   data:[],
+                  addedBalance: [],
                   checkedBalance:[],
                   checkboxes:[],
                   isLoading: false
@@ -29,6 +30,12 @@ export default class Table extends React.Component{
              this.setState({
                   data,
                   isLoading: true
+            })
+            const  addedBalance = [...document.getElementsByClassName('addedBalance')]
+            let table = document.getElementById('table')
+            if([...table.rows].slice(11))
+            this.setState({
+                  addedBalance
             })
             const checkboxes = [...document.getElementsByClassName('checkbox')]
             this.setState({
@@ -57,12 +64,9 @@ export default class Table extends React.Component{
                   const txtInput  = document.createElement("input")
                   txtInput.type  = (i === 0)? 'checkbox' :  'text'
                   if(i === 5) txtInput.className += 'addedBalance'
-                  if(i === 0){ 
-                        txtInput.classList.add(...classNamesToAdd)
-                        txtInput.addEventListener('click', this.checkSingleBox)
-                  }
+                  if(i === 0) txtInput.classList.add(...classNamesToAdd)
                   if (i === 1)txtInput.style="text-transform:uppercase" 
-                  cell.appendChild(txtInput)  
+                  cell.appendChild(txtInput)     
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
             const addedRowCheckbox = [...document.getElementsByClassName('addedcheckbox')]
@@ -76,7 +80,7 @@ export default class Table extends React.Component{
             this.setState({
                   checkboxes 
             })
-
+            this.checkSingleBox()
       }
       deleteRow(){
             const table = document.getElementById('table')
