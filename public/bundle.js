@@ -2271,6 +2271,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.state = {
       data: [],
       checkboxes: [],
+      numbersRow: 0,
       isLoading: false,
       checkedBalance: [],
       headerCheckbox: false
@@ -2282,6 +2283,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     _this.checkAllBoxes = _this.checkAllBoxes.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.checkSingleBox = _this.checkSingleBox.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getDataBalance = _this.getDataBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.AdjustRowNumber = _this.AdjustRowNumber.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
   }
 
@@ -2311,8 +2313,9 @@ var Table = /*#__PURE__*/function (_React$Component) {
                   checkboxes: checkboxes
                 });
                 this.checkAllBoxes();
+                this.AdjustRowNumber();
 
-              case 9:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -2393,6 +2396,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
       this.setState({
         checkboxes: checkboxes
       });
+      this.AdjustRowNumber();
     }
   }, {
     key: "deleteRow",
@@ -2403,7 +2407,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
       var cell = table.rows[index].cells[5];
       deleteBalance = cell.querySelector(".addedBalance") ? cell.children[0].value : table.rows[index].cells[5].innerHTML;
-      console.log(deleteBalance);
 
       if (Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) {
         var checkedBalance = this.state.checkedBalance.slice(0, -1);
@@ -2413,6 +2416,15 @@ var Table = /*#__PURE__*/function (_React$Component) {
       }
 
       table.deleteRow(index);
+      this.AdjustRowNumber();
+    }
+  }, {
+    key: "AdjustRowNumber",
+    value: function AdjustRowNumber() {
+      var numbersRow = document.getElementsByTagName('tr').length - 1;
+      this.setState({
+        numbersRow: numbersRow
+      });
     }
   }, {
     key: "getHeader",
@@ -2489,7 +2501,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "getDataBalance",
     value: function getDataBalance() {
       var totalBalance = 0;
-      console.log(this.state.checkedBalance.length);
 
       if (this.state.checkedBalance.length) {
         totalBalance = this.state.checkedBalance.map(function (num) {
@@ -2517,6 +2528,8 @@ var Table = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("table", {
           id: "table"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
+          id: "amountRows"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total Row Count:", this.state.numbersRow), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total Checked Row: ", this.state.checkedBalance.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
           id: "total"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("span", null, "$", this.getDataBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",

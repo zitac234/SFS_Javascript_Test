@@ -160,7 +160,7 @@ export default class Table extends React.Component{
                                           {this.getRow()}
                                     </tbody>
                               </table>
-                              <div id='amountRows'><p>Total Row Count:{this.state.numbersRow}</p> <p>Total Checked Row: {this.state.checkedBalance.length}</p></div>
+                              <div id='amountRows'>Total Row Count:{this.state.numbersRow}</div>
                               <div id= 'total'><p>Total <span>${this.getDataBalance()}</span></p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
                               <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>

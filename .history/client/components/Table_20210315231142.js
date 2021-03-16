@@ -20,10 +20,10 @@ export default class Table extends React.Component{
             this.addRow = this.addRow.bind(this)
             this.deleteRow = this.deleteRow.bind(this)
             this.getHeader = this.getHeader.bind(this)
+            this.AdjustRowNumber = this.AdjustRowNumber
             this.checkAllBoxes = this.checkAllBoxes.bind(this)
             this.checkSingleBox = this.checkSingleBox.bind(this)
             this.getDataBalance = this.getDataBalance.bind(this)
-            this.AdjustRowNumber = this.AdjustRowNumber.bind(this)
       }
       async componentDidMount(){ 
             const url = 'https://raw.githubusercontent.com/StrategicFS/Recruitment/master/data.json'
@@ -160,7 +160,7 @@ export default class Table extends React.Component{
                                           {this.getRow()}
                                     </tbody>
                               </table>
-                              <div id='amountRows'><p>Total Row Count:{this.state.numbersRow}</p> <p>Total Checked Row: {this.state.checkedBalance.length}</p></div>
+                              {/* <div id='amountRows'>Total Row Count:{document.getElementById('table')}</div> */}
                               <div id= 'total'><p>Total <span>${this.getDataBalance()}</span></p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
                               <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>
