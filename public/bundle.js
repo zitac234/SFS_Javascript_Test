@@ -2269,18 +2269,18 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      headerCheckbox: false,
       data: [],
-      checkedBalance: [],
       checkboxes: [],
-      isLoading: false
+      isLoading: false,
+      checkedBalance: [],
+      headerCheckbox: false
     };
-    _this.checkSingleBox = _this.checkSingleBox.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getRow = _this.getRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.addRow = _this.addRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.deleteRow = _this.deleteRow.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getHeader = _this.getHeader.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.checkAllBoxes = _this.checkAllBoxes.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
+    _this.checkSingleBox = _this.checkSingleBox.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     _this.getDataBalance = _this.getDataBalance.bind((0,_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_4__.default)(_this));
     return _this;
   }
@@ -2398,12 +2398,21 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "deleteRow",
     value: function deleteRow() {
       var table = document.getElementById('table');
+      var lastIndex = this.state.checkedBalance.length - 1;
+      var deleteBalance;
       var index = (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__.default)(table.rows).length - 1;
+      var cell = table.rows[index].cells[5];
+      deleteBalance = cell.querySelector(".addedBalance") ? cell.children[0].value : table.rows[index].cells[5].innerHTML;
+      console.log(deleteBalance);
+
+      if (Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) {
+        var checkedBalance = this.state.checkedBalance.slice(0, -1);
+        this.setState({
+          checkedBalance: checkedBalance
+        });
+      }
+
       table.deleteRow(index);
-      var addedBalance = this.state.addedBalance.slice(0, -1);
-      this.setState({
-        addedBalance: addedBalance
-      });
     }
   }, {
     key: "getHeader",
@@ -2439,7 +2448,6 @@ var Table = /*#__PURE__*/function (_React$Component) {
       this.setState({
         checkedBalance: checkedBalance
       });
-      console.log('this is state checkbox', this.state.checkboxes);
     }
   }, {
     key: "getRow",
@@ -2481,6 +2489,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
     key: "getDataBalance",
     value: function getDataBalance() {
       var totalBalance = 0;
+      console.log(this.state.checkedBalance.length);
 
       if (this.state.checkedBalance.length) {
         totalBalance = this.state.checkedBalance.map(function (num) {

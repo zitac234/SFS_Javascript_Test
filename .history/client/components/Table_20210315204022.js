@@ -20,7 +20,7 @@ export default class Table extends React.Component{
             this.deleteRow = this.deleteRow.bind(this)
             this.getHeader = this.getHeader.bind(this)
             this.checkAllBoxes = this.checkAllBoxes.bind(this)
-            this.checkSingleBox = this.checkSingleBox.bind(this)
+            
             this.getDataBalance = this.getDataBalance.bind(this)
       }
       async componentDidMount(){ 
@@ -59,7 +59,7 @@ export default class Table extends React.Component{
                   if(i === 5) txtInput.className += 'addedBalance'
                   if(i === 0){ 
                         txtInput.classList.add(...classNamesToAdd)
-                        txtInput.addEventListener('click',this.checkSingleBox)
+                        txtInput.addEventListener('click',)
                   }
                   if (i === 1)txtInput.style="text-transform:uppercase" 
                   cell.appendChild(txtInput)  
@@ -76,22 +76,16 @@ export default class Table extends React.Component{
             this.setState({
                   checkboxes 
             })
+
       }
       deleteRow(){
             const table = document.getElementById('table')
-            let lastIndex = this.state.checkedBalance.length-1
-            let deleteBalance
             let index = [...table.rows].length-1
-            let cell = table.rows[index].cells[5]
-           deleteBalance = (cell.querySelector(".addedBalance"))? cell.children[0].value :  table.rows[index].cells[5].innerHTML
-           console.log(deleteBalance)
-           if(Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) { 
-                 const checkedBalance = this.state.checkedBalance.slice(0,-1)
-                 this.setState({
-                        checkedBalance
-                  })
-            }
             table.deleteRow(index)
+            const addedBalance = this.state.addedBalance.slice(0, -1)
+            this.setState({
+                  addedBalance
+            })
       }
       getHeader(){
             const headers = ['Checkbox','Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
@@ -110,6 +104,7 @@ export default class Table extends React.Component{
             this.setState({
                   checkedBalance
             })
+            console.log('this is state checkbox', this.state.checkboxes)
       }
       getRow(){
            const keys = Object.keys(this.state.data[0])
@@ -126,15 +121,14 @@ export default class Table extends React.Component{
             }))
       }
       getDataBalance(){
-            let totalBalance  = 0
-            console.log(this.state.checkedBalance.length )
+            let totalBalance = 0
           if(this.state.checkedBalance.length ){
-            totalBalance =   this.state.checkedBalance.map(num => {
+            totalBalance = this.state.checkedBalance.map(num => {
                   let element = Number(num)
                   return (isNaN(element))? 0 : element
             }).reduce( ( sum, num) => sum + num , 0) 
           }
-                return totalBalance
+          return totalBalance
       }
       render (){
             const {data} = this.state

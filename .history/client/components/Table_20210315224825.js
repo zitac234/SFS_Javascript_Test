@@ -88,10 +88,10 @@ export default class Table extends React.Component{
            if(Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) { 
                  const checkedBalance = this.state.checkedBalance.slice(0,-1)
                  this.setState({
-                        checkedBalance
-                  })
-            }
-            table.deleteRow(index)
+                  checkedBalance
+            })
+      }
+      table.deleteRow(index)
       }
       getHeader(){
             const headers = ['Checkbox','Creditor', 'Frist Name','Last Name','Min Pay%','Balance']

@@ -91,7 +91,7 @@ export default class Table extends React.Component{
                         checkedBalance
                   })
             }
-            table.deleteRow(index)
+      table.deleteRow(index)
       }
       getHeader(){
             const headers = ['Checkbox','Creditor', 'Frist Name','Last Name','Min Pay%','Balance']

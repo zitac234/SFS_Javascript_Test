@@ -86,12 +86,16 @@ export default class Table extends React.Component{
            deleteBalance = (cell.querySelector(".addedBalance"))? cell.children[0].value :  table.rows[index].cells[5].innerHTML
            console.log(deleteBalance)
            if(Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) { 
-                 const checkedBalance = this.state.checkedBalance.slice(0,-1)
+                 const checkedBalance = this.state.checkedBalance
                  this.setState({
-                        checkedBalance
-                  })
-            }
+                  checkedBalance
+            })
+      }
             table.deleteRow(index)
+            // const addedBalance = this.state.addedBalance.slice(0, -1)
+            // this.setState({
+            //       addedBalance
+            // })
       }
       getHeader(){
             const headers = ['Checkbox','Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
