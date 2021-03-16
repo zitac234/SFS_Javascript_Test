@@ -86,6 +86,7 @@ export default class Table extends React.Component{
             let lastIndex = this.state.checkedBalance.length-1
             let deleteBalance
             let index = [...table.rows].length-1
+            if(index === 1)
             let cell = table.rows[index].cells[5]
            deleteBalance = (cell.querySelector(".addedBalance"))? cell.children[0].value :  table.rows[index].cells[5].innerHTML
            if(Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) { 
@@ -94,7 +95,7 @@ export default class Table extends React.Component{
                         checkedBalance, 
                   })
             }
-            if(index !== 0)table.deleteRow(index)
+            table.deleteRow(index)
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){

@@ -2415,7 +2415,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         });
       }
 
-      table.deleteRow(index);
+      if (index !== 0) table.deleteRow(index);
       this.AdjustRowNumber();
     }
   }, {

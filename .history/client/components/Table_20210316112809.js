@@ -94,8 +94,9 @@ export default class Table extends React.Component{
                         checkedBalance, 
                   })
             }
-            if(index !== 0)table.deleteRow(index)
+            table.deleteRow(index)
            this.AdjustRowNumber()
+           c
       }
       AdjustRowNumber(){
             const numbersRow = (document.getElementsByTagName('tr').length)-1

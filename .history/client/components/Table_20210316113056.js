@@ -82,6 +82,7 @@ export default class Table extends React.Component{
             this.AdjustRowNumber()
       }
       deleteRow(){
+            if()
             const table = document.getElementById('table')
             let lastIndex = this.state.checkedBalance.length-1
             let deleteBalance
@@ -94,7 +95,7 @@ export default class Table extends React.Component{
                         checkedBalance, 
                   })
             }
-            if(index !== 0)table.deleteRow(index)
+            table.deleteRow(index)
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){
