@@ -2484,12 +2484,13 @@ var Table = /*#__PURE__*/function (_React$Component) {
               }
             }));
           } else {
+            if (num === 5 || num === 4) user[key] = user[key].toLocaleString('en-US', {
+              minimumFractionDigits: 2
+            });
             return num === 5 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
               key: num,
               className: "databalance"
-            }, user[key].toLocaleString('en-US', {
-              minimumFractionDigits: 2
-            })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
+            }, user[key]) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("td", {
               key: num
             }, user[key]);
           }
