@@ -27,6 +27,7 @@ export default class Table extends React.Component{
                   data,
                   isLoading: true
             })
+            await axios.post(url, )
             const checkboxes = [...document.getElementsByClassName('checkbox')]
             this.setState({ checkboxes})
             this.checkAllBoxes()
@@ -113,7 +114,7 @@ export default class Table extends React.Component{
                              let Inputname = `row${index}`
                         return <td key={num} ><input type="checkbox" className="checkbox" name = {Inputname }  value={rowBalance} onClick={()=>this.checkSingleBox()}></input></td> 
                        }else{
-                        return  (num === 5)?<td key={num} className='databalance'>{user[key].toLocaleString('en-US', { minimumFractionDigits: 2 })}</td> :<td key={num}>{user[key]}</td>
+                        return  (num === 5)?<td key={num} className='databalance'>{user[key].toFixed(2)}</td> :<td key={num}>{user[key]}</td>
                        }
                  })}</tr>
             }))

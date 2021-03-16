@@ -66,6 +66,7 @@ export default class Table extends React.Component{
                         addedRowCheckbox[i].setAttribute('value', event.target.value)
                   })
             }
+            
             const checkboxes = [...document.querySelectorAll(".checkbox, .addedcheckbox")]
             this.setState({checkboxes })
             this.AdjustRowNumber()

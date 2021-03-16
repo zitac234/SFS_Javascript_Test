@@ -41,7 +41,7 @@ export default class Table extends React.Component{
                   this.checkSingleBox()
             })
       }
-      addRow(){
+      async addRow(){
             let classNamesToAdd = ['checkbox', 'addedcheckbox']
             let table = document.getElementById('table')
             let index = [...table.rows].length-1
@@ -64,8 +64,11 @@ export default class Table extends React.Component{
                   cellBalance[i].addEventListener('change', (event)=>{
                         addedRowCheckbox[i].setAttribute('name', `rows${index+1}`)
                         addedRowCheckbox[i].setAttribute('value', event.target.value)
+                        const url = 'https://raw.githubusercontent.com/StrategicFS/Recruitment/master/data.json'
+                         await axios.post(url, event.target.value)
                   })
             }
+
             const checkboxes = [...document.querySelectorAll(".checkbox, .addedcheckbox")]
             this.setState({checkboxes })
             this.AdjustRowNumber()
