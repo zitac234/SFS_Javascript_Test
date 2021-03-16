@@ -126,7 +126,7 @@ export default class Table extends React.Component{
                   return (isNaN(element))? 0 : element
             }).reduce( ( sum, num) => sum + num , 0) 
           }
-            return totalBalance
+                return totalBalance
       }
       render (){
             const {data} = this.state

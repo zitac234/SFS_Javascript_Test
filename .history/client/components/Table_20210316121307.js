@@ -79,14 +79,16 @@ export default class Table extends React.Component{
            deleteBalance = (cell.querySelector(".addedBalance"))? cell.children[0].value :  table.rows[index].cells[5].innerHTML
            if(Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) { 
                  const checkedBalance = this.state.checkedBalance.slice(0,-1)
-                 this.setState({checkedBalance})
+                 this.setState({checkedBalance, })
             }
             if(index !== 0)table.deleteRow(index)
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){
             const numbersRow = (document.getElementsByTagName('tr').length)-1
-            this.setState({numbersRow})
+            this.setState({
+                  numbersRow
+            })
       }
       getHeader(){
             const headers = ['Checkbox','Creditor', 'Frist Name','Last Name','Min Pay%','Balance']
@@ -102,7 +104,9 @@ export default class Table extends React.Component{
       }
       checkSingleBox(){
             const checkedBalance = this.state.checkboxes.filter(box => box.checked).map(box => box.value)
-            this.setState({checkedBalance})
+            this.setState({
+                  checkedBalance
+            })
       }
       getRow(){
            const keys = Object.keys(this.state.data[0])
@@ -126,7 +130,7 @@ export default class Table extends React.Component{
                   return (isNaN(element))? 0 : element
             }).reduce( ( sum, num) => sum + num , 0) 
           }
-            return totalBalance
+                return totalBalance
       }
       render (){
             const {data} = this.state
