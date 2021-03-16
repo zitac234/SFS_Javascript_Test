@@ -2528,10 +2528,14 @@ var Table = /*#__PURE__*/function (_React$Component) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("table", {
           id: "table"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tr", null, this.getHeader())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("tbody", null, this.getRow())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
-          id: "amountRows"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total Row Count:", this.state.numbersRow), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total Checked Row: ", this.state.checkedBalance.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
           id: "total"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "Total ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("span", null, "$", this.getDataBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", null, "TOTAL ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("span", null, "$", this.getDataBalance()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("div", {
+          id: "amountRows"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", {
+          id: "totalRow"
+        }, "ROWS:", this.state.numbersRow), " ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("p", {
+          id: "totalchecked"
+        }, "CHECKED ROWS: ", this.state.checkedBalance.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_9__.createElement("button", {
           type: "button",
           id: "buttonAdd",
           onClick: function onClick() {

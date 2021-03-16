@@ -1,8 +1,8 @@
 body{
-      font-size: 16px;
+      font-size: 16p;
 }
-#buttonAdd, #total, div#amountRows{
-      margin-left: 15%;
+#buttonAdd, #total{
+      margin-left: 20%;
       margin-top: 1%;
 }
 #total{
@@ -15,8 +15,8 @@ body{
       padding-left: 30px;
       font-size: larger;
 }
-span,#buttonRemove{
-      margin-left: 915px
+span{
+      margin-left: 80%;
 }
 table{
       margin-top: 5%;
@@ -28,7 +28,7 @@ table, th, td {
  border: 1px solid black;
 }
  td, th, input{
-      /* font-size: 16px; */
+      font-size: 16px;
       text-align: center;
       height: 35px;
       width: 175px;
@@ -40,10 +40,10 @@ table, th, td {
       outline: none;
       border-radius: 25%;
 }
-#totalchecked{
-      margin-left: 850px;
+#buttonRemove{
+      margin-left: 700px;
 }
 #amountRows{
       display: inline-flex;
-      font-size: larger;
+      font-size: ;
 }

@@ -15,8 +15,8 @@ body{
       padding-left: 30px;
       font-size: larger;
 }
-span,#buttonRemove{
-      margin-left: 915px
+span{
+      margin-left: 80%;
 }
 table{
       margin-top: 5%;
@@ -40,7 +40,7 @@ table, th, td {
       outline: none;
       border-radius: 25%;
 }
-#totalchecked{
+#buttonRemove, #totalchecked{
       margin-left: 850px;
 }
 #amountRows{
