@@ -2405,7 +2405,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
       var cell = table.rows[index].cells[5];
       deleteBalance = cell.querySelector(".addedBalance") ? cell.children[0].value : table.rows[index].cells[5].innerHTML;
 
-      if (Number(this.state.checkedBalance[lastIndex]) === Number(deleteBalance)) {
+      if (Number(this.state.checkedBalance[lastIndex].replace(',', '')) === Number(deleteBalance.replace(',', ''))) {
         var checkedBalance = this.state.checkedBalance.slice(0, -1);
         this.setState({
           checkedBalance: checkedBalance
