@@ -56,7 +56,7 @@ export default class Table extends React.Component{
                         txtInput.addEventListener('click',this.checkSingleBox)
                   }
                   if (i === 1)txtInput.style="text-transform:uppercase" 
-                  if(i === 2 || i === 3)txtInput.style='text-transform: capitalize'
+                  if
                   cell.appendChild(txtInput)  
             }
             const cellBalance = [...document.getElementsByClassName('addedBalance')]
@@ -83,8 +83,6 @@ export default class Table extends React.Component{
                  this.setState({checkedBalance})
             }
             if(index !== 0)table.deleteRow(index)
-            const checkboxes = this.state.checkboxes.slice(0, index)
-            this.setState({checkboxes})
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){
@@ -105,7 +103,7 @@ export default class Table extends React.Component{
       }
       checkSingleBox(){
             const checkedBalance = this.state.checkboxes.filter(box => box.checked).map(box => box.value)
-            this.setState({checkedBalance })
+            this.setState({checkedBalance})
       }
       getRow(){
            const keys = Object.keys(this.state.data[0])

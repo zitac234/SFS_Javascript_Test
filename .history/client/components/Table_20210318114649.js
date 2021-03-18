@@ -38,6 +38,8 @@ export default class Table extends React.Component{
                   const headerCheckbox = !this.state.headerCheckbox
                   this.setState({headerCheckbox})
                   this.state.checkboxes.forEach(box => box.checked = this.state.headerCheckbox)
+                  // this.setState({checkboxes})
+                  console.log('this is checkbox', checkboxes)
                   this.checkSingleBox()
             })
       }
@@ -82,9 +84,8 @@ export default class Table extends React.Component{
                  const checkedBalance = this.state.checkedBalance.slice(0,-1)
                  this.setState({checkedBalance})
             }
+            console.log('this is state delete ', this.state.checkedBalance)
             if(index !== 0)table.deleteRow(index)
-            const checkboxes = this.state.checkboxes.slice(0, index)
-            this.setState({checkboxes})
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){
@@ -104,8 +105,11 @@ export default class Table extends React.Component{
       })
       }
       checkSingleBox(){
+            // console.log('this is state before', this.state.checkboxes)
+            const checkboxes = this.state.checkboxes.filter(box => box.checked)
             const checkedBalance = this.state.checkboxes.filter(box => box.checked).map(box => box.value)
-            this.setState({checkedBalance })
+            this.setState({checkedBalance, checkboxes})
+            // console.log('this is state after ', this.state.checkedBalance)
       }
       getRow(){
            const keys = Object.keys(this.state.data[0])

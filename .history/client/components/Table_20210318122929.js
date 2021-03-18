@@ -83,7 +83,7 @@ export default class Table extends React.Component{
                  this.setState({checkedBalance})
             }
             if(index !== 0)table.deleteRow(index)
-            const checkboxes = this.state.checkboxes.slice(0, index)
+            const checkboxes = 
             this.setState({checkboxes})
            this.AdjustRowNumber()
       }

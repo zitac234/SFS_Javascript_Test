@@ -82,9 +82,8 @@ export default class Table extends React.Component{
                  const checkedBalance = this.state.checkedBalance.slice(0,-1)
                  this.setState({checkedBalance})
             }
+            console.log('this is state delete ', this.state.checkedBalance)
             if(index !== 0)table.deleteRow(index)
-            const checkboxes = this.state.checkboxes.slice(0, index)
-            this.setState({checkboxes})
            this.AdjustRowNumber()
       }
       AdjustRowNumber(){
@@ -104,8 +103,10 @@ export default class Table extends React.Component{
       })
       }
       checkSingleBox(){
-            const checkedBalance = this.state.checkboxes.filter(box => box.checked).map(box => box.value)
-            this.setState({checkedBalance })
+            console.log('this is state before', this.state.checkboxes)
+            const checkboxes = this.state.checkboxes.filter(box => box.checked).map(box => box.value)
+            this.setState({checkboxes})
+            console.log('this is state after ', this.state.checkboxes)
       }
       getRow(){
            const keys = Object.keys(this.state.data[0])
@@ -148,7 +149,7 @@ export default class Table extends React.Component{
                                     </tbody>
                               </table>
                               <div id= 'total'><p>TOTAL <span>${this.getDataBalance()}</span></p></div>
-                              <div id='amountRows'><p id='totalRow'>ROWS:{this.state.numbersRow}</p> <p id='totalchecked'>CHECKED ROWS: {this.state.checkedBalance.length}</p></div>
+                              <div id='amountRows'><p id='totalRow'>ROWS:{this.state.numbersRow}</p> <p id='totalchecked'>CHECKED ROWS: {this.state.checkboxes.length}</p></div>
                               <button type='button' id='buttonAdd' onClick={() =>this.addRow()}>ADD</button>
                               <button type='button' id='buttonRemove' onClick={() =>this.deleteRow()}>REMOVE</button>
                         </div>

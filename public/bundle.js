@@ -2369,6 +2369,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
         }
 
         if (i === 1) txtInput.style = "text-transform:uppercase";
+        if (i === 2 || i === 3) txtInput.style = 'text-transform: capitalize';
         cell.appendChild(txtInput);
       }
 
@@ -2413,6 +2414,10 @@ var Table = /*#__PURE__*/function (_React$Component) {
       }
 
       if (index !== 0) table.deleteRow(index);
+      var checkboxes = this.state.checkboxes.slice(0, index);
+      this.setState({
+        checkboxes: checkboxes
+      });
       this.AdjustRowNumber();
     }
   }, {
