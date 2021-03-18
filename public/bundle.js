@@ -2504,7 +2504,7 @@ var Table = /*#__PURE__*/function (_React$Component) {
 
       if (this.state.checkedBalance.length) {
         totalBalance = this.state.checkedBalance.map(function (num) {
-          var element = Number(num);
+          var element = Number(num.replace(',', ''));
           return isNaN(element) ? 0 : element;
         }).reduce(function (sum, num) {
           return sum + num;

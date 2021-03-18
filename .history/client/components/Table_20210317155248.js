@@ -123,7 +123,8 @@ export default class Table extends React.Component{
             let totalBalance  = 0
           if(this.state.checkedBalance.length ){
             totalBalance =   this.state.checkedBalance.map(num => {
-                  let element = Number(num.replace(',', ''))
+                  console.log(Number(num.replace(',', '')))
+                  let element = Number(num)
                   return (isNaN(element))? 0 : element
             }).reduce( ( sum, num) => sum + num , 0) 
           }

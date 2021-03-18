@@ -26,7 +26,7 @@ table, th, td {
  border: 1px solid black;
 }
  td, th, input{
-      font-size: 16px;
+      /* font-size: 16px; */
       text-align: center;
       height: 35px;
       width: 175px;

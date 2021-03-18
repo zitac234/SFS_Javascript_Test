@@ -114,6 +114,7 @@ export default class Table extends React.Component{
                         return <td key={num} ><input type="checkbox" className="checkbox" name = {Inputname }  value={rowBalance} onClick={()=>this.checkSingleBox()}></input></td> 
                        }else{
                              if(num === 5 || num === 4)user[key] = user[key].toLocaleString('en-US', { minimumFractionDigits: 2 })
+                             console.log(user)
                         return  (num === 5)?<td key={num} className='databalance'>{user[key]}</td> :<td key={num}>{user[key]}</td>
                        }
                  })}</tr>
@@ -123,7 +124,8 @@ export default class Table extends React.Component{
             let totalBalance  = 0
           if(this.state.checkedBalance.length ){
             totalBalance =   this.state.checkedBalance.map(num => {
-                  let element = Number(num.replace(',', ''))
+                  let element = Number(num)
+                  console.log(element)
                   return (isNaN(element))? 0 : element
             }).reduce( ( sum, num) => sum + num , 0) 
           }
